@@ -1,2 +1,2 @@
-# robot-worlds
-A demonstration project for WTC's Robot Worlds group exercise.
+# wtc-robot-worlds
+wtc-robot-worlds is a demonstration project for We Think Code.
