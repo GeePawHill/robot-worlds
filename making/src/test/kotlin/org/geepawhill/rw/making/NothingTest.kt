@@ -3,6 +3,7 @@ package org.geepawhill.rw.making
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.io.PrintStream
 import java.net.ServerSocket
 import java.net.Socket
 
@@ -25,7 +26,9 @@ class NothingTest {
 
         // Connect to the server
         println("Connecting to server.")
-        Socket("localhost", 3000)
+        val client = Socket("localhost", 3000)
+        val output = PrintStream(client.getOutputStream())
+        output.println("Hi mom!")
         println("Connected to server.")
         server.join()
     }
