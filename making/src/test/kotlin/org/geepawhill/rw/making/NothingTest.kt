@@ -93,4 +93,14 @@ class NothingTest {
             client1.send("Hey Dad!")
         }
     }
+
+    @Test
+    fun `two clients, one message each`() {
+        ServerTester {
+            val client1 = Client()
+            client1.send("Hi Mom!")
+            val client2 = Client()
+            client2.send("Hey Dad!")
+        }
+    }
 }
