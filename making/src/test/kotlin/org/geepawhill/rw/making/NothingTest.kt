@@ -10,7 +10,16 @@ import java.net.Socket
 class NothingTest {
 
     @Test
-    fun `Idunno2`() {
+    fun `Round 1`() {
+        connectOnce()
+    }
+
+    @Test
+    fun `Round 2`() {
+        connectOnce()
+    }
+
+    private fun connectOnce() {
         // Start a server
         val server = Thread {
             println("Starting server thread.")
@@ -21,6 +30,7 @@ class NothingTest {
             val message = input.readLine()
             println("Received: $message")
             println("Ending server thread.")
+            socket.close()
         }
         server.start()
 
