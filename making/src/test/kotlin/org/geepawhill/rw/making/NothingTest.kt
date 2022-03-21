@@ -52,6 +52,7 @@ class NothingTest {
 
         val client1 = Client()
         client1.send("Hi Mom!")
+        client1.send("Hey Dad!")
         server.join()
     }
 }
