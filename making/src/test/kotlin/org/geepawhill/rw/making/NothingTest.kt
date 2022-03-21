@@ -62,16 +62,23 @@ class Server(val continueFlag: ContinueFlag) {
 class NothingTest {
 
     @Test
-    fun `Round 1`() {
-        connectOnce()
+    fun `single client, single message`() {
+        // Start a server
+        val inTest = ContinueFlag()
+        val server = Server(inTest)
+        val serverThread = Thread {
+            server.run()
+        }
+        serverThread.start()
+
+        val client1 = Client()
+        client1.send("Hi Mom!")
+        inTest.finished()
+        serverThread.join()
     }
 
     @Test
-    fun `Round 2`() {
-        connectOnce()
-    }
-
-    private fun connectOnce() {
+    fun `single client, two messages`() {
         // Start a server
         val inTest = ContinueFlag()
         val server = Server(inTest)
