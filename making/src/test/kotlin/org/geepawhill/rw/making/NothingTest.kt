@@ -35,9 +35,10 @@ class ContinueFlag {
 }
 
 class Server(val continueFlag: ContinueFlag) {
+    val socket = ServerSocket(3000)
+    
     fun run() {
         println("Starting server thread.")
-        val socket = ServerSocket(3000)
         while (continueFlag.isTrue) {
             socket.soTimeout = 10
             try {
