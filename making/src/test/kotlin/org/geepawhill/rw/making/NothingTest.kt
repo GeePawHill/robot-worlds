@@ -1,5 +1,6 @@
 package org.geepawhill.rw.making
 
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -38,7 +39,7 @@ class Server(val continueFlag: ContinueFlag) {
         println("Starting server thread.")
         val socket = ServerSocket(3000)
         while (continueFlag.isTrue) {
-            socket.soTimeout = 100
+            socket.soTimeout = 10
             try {
                 val accepted = socket.accept()
                 val client = Thread {
@@ -77,6 +78,7 @@ class ServerTester(val test: ServerTester.() -> Unit) {
 
 class NothingTest {
 
+    @RepeatedTest(100)
     @Test
     fun `single client, single message`() {
         ServerTester {
