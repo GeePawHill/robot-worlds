@@ -1,6 +1,8 @@
 package org.geepawhill.rw.making
 
 import org.junit.jupiter.api.Test
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.net.ServerSocket
 import java.net.Socket
 
@@ -12,7 +14,11 @@ class NothingTest {
         val server = Thread {
             println("Starting server thread.")
             val socket = ServerSocket(3000)
-            socket.accept()
+            val accepted = socket.accept()
+            println("Accepted socket")
+            val input = BufferedReader(InputStreamReader(accepted.getInputStream()))
+            val message = input.readLine()
+            println("Received: $message")
             println("Ending server thread.")
         }
         server.start()
