@@ -21,6 +21,26 @@ class Client() {
     }
 }
 
+class Server() {
+    fun run() {
+        println("Starting server thread.")
+        val socket = ServerSocket(3000)
+        val accepted = socket.accept()
+        val client = Thread {
+            println("Accepted socket")
+            val input = BufferedReader(InputStreamReader(accepted.getInputStream()))
+            while (true) {
+                val message = input.readLine()
+                val output = PrintStream(accepted.getOutputStream(), true)
+                output.println("You said '$message'")
+            }
+        }
+        client.start()
+        println("Ending server thread.")
+        socket.close()
+    }
+}
+
 class NothingTest {
 
     @Test
@@ -35,28 +55,15 @@ class NothingTest {
 
     private fun connectOnce() {
         // Start a server
-        val server = Thread {
-            println("Starting server thread.")
-            val socket = ServerSocket(3000)
-            val accepted = socket.accept()
-            val client = Thread {
-                println("Accepted socket")
-                val input = BufferedReader(InputStreamReader(accepted.getInputStream()))
-                while (true) {
-                    val message = input.readLine()
-                    val output = PrintStream(accepted.getOutputStream(), true)
-                    output.println("You said '$message'")
-                }
-            }
-            client.start()
-            println("Ending server thread.")
-            socket.close()
+        val server = Server()
+        val serverThread = Thread {
+            server.run()
         }
-        server.start()
+        serverThread.start()
 
         val client1 = Client()
         client1.send("Hi Mom!")
         client1.send("Hey Dad!")
-        server.join()
+        serverThread.join()
     }
 }
