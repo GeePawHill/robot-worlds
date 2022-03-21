@@ -59,38 +59,38 @@ class Server(val continueFlag: ContinueFlag) {
     }
 }
 
+class ServerTester(val test: ServerTester.() -> Unit) {
+    init {
+        // Start a server
+        val inTest = ContinueFlag()
+        val server = Server(inTest)
+        val serverThread = Thread {
+            server.run()
+        }
+        serverThread.start()
+        test()
+        inTest.finished()
+        serverThread.join()
+    }
+}
+
+
 class NothingTest {
 
     @Test
     fun `single client, single message`() {
-        // Start a server
-        val inTest = ContinueFlag()
-        val server = Server(inTest)
-        val serverThread = Thread {
-            server.run()
+        ServerTester {
+            val client1 = Client()
+            client1.send("Hi Mom!")
         }
-        serverThread.start()
-
-        val client1 = Client()
-        client1.send("Hi Mom!")
-        inTest.finished()
-        serverThread.join()
     }
 
     @Test
     fun `single client, two messages`() {
-        // Start a server
-        val inTest = ContinueFlag()
-        val server = Server(inTest)
-        val serverThread = Thread {
-            server.run()
+        ServerTester {
+            val client1 = Client()
+            client1.send("Hi Mom!")
+            client1.send("Hey Dad!")
         }
-        serverThread.start()
-
-        val client1 = Client()
-        client1.send("Hi Mom!")
-        client1.send("Hey Dad!")
-        inTest.finished()
-        serverThread.join()
     }
 }
