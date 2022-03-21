@@ -7,6 +7,20 @@ import java.io.PrintStream
 import java.net.ServerSocket
 import java.net.Socket
 
+class Client() {
+    val socket = Socket("localhost", 3000)
+    val input = BufferedReader(InputStreamReader(socket.getInputStream()))
+    val output = PrintStream(socket.getOutputStream(), true)
+
+    fun send(message: String): String {
+        println("Client --> $message")
+        output.println(message)
+        val result = input.readLine()
+        println("Client <-- $result")
+        return result
+    }
+}
+
 class NothingTest {
 
     @Test
@@ -36,15 +50,8 @@ class NothingTest {
         }
         server.start()
 
-        // Connect to the server
-        println("Connecting to server.")
-        val client = Socket("localhost", 3000)
-        println("Connected to server.")
-        val output = PrintStream(client.getOutputStream())
-        val input = BufferedReader(InputStreamReader(client.getInputStream()))
-        output.println("Hi mom!")
-        val message = input.readLine()
-        println("Client heard: '$message'")
+        val client1 = Client()
+        client1.send("Hi Mom!")
         server.join()
     }
 }
