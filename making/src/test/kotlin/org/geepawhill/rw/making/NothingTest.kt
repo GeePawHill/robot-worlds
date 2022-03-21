@@ -25,17 +25,19 @@ class Server() {
     fun run() {
         println("Starting server thread.")
         val socket = ServerSocket(3000)
-        val accepted = socket.accept()
-        val client = Thread {
-            println("Accepted socket")
-            val input = BufferedReader(InputStreamReader(accepted.getInputStream()))
-            while (true) {
-                val message = input.readLine()
-                val output = PrintStream(accepted.getOutputStream(), true)
-                output.println("You said '$message'")
+        while (true) {
+            val accepted = socket.accept()
+            val client = Thread {
+                println("Accepted socket")
+                val input = BufferedReader(InputStreamReader(accepted.getInputStream()))
+                while (true) {
+                    val message = input.readLine()
+                    val output = PrintStream(accepted.getOutputStream(), true)
+                    output.println("You said '$message'")
+                }
             }
+            client.start()
         }
-        client.start()
         println("Ending server thread.")
         socket.close()
     }
