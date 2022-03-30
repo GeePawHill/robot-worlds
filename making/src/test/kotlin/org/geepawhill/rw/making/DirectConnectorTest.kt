@@ -3,9 +3,10 @@ package org.geepawhill.rw.making
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isTrue
+import org.geepawhill.rw.making.DirectConnector.Companion.DISCONNECTED_RESPONSE
 import org.junit.jupiter.api.Test
 
-val DISCONNECTED_RESPONSE = "ERROR: Not Connected."
+
 val HARDWIRED_RESPONSE = "OKAY"
 
 class DirectConnectorTest {
@@ -34,33 +35,10 @@ class DirectConnectorTest {
         assertThat(connector.send("Him Mom!")).isEqualTo(HARDWIRED_RESPONSE)
     }
 
-    interface Receiver {
-        fun receive(message: String): String
-    }
-
     class TestingReceiver() : Receiver {
         override fun receive(message: String): String {
             return HARDWIRED_RESPONSE
         }
     }
-
-    class DirectConnector(val receiver: Receiver) {
-
-        private var isConnected = false
-
-        fun connect(): Boolean {
-            isConnected = true
-            return true
-        }
-
-        fun send(message: String): String {
-            if (isConnected) return receiver.receive(message)
-            return DISCONNECTED_RESPONSE
-        }
-
-        fun disconnect() {
-            isConnected = false
-        }
-
-    }
 }
+
