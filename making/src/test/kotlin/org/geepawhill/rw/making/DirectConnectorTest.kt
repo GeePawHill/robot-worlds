@@ -9,7 +9,7 @@ val DISCONNECTED_RESPONSE = "ERROR: Not Connected."
 val HARDWIRED_RESPONSE = "OKAY"
 
 class DirectConnectorTest {
-    val connector = DirectConnector()
+    val connector = DirectConnector(TestingReceiver())
 
     @Test
     fun `send before connect gets error response`() {
@@ -34,7 +34,17 @@ class DirectConnectorTest {
         assertThat(connector.send("Him Mom!")).isEqualTo(HARDWIRED_RESPONSE)
     }
 
-    class DirectConnector {
+    interface Receiver {
+        fun receive(message: String): String
+    }
+
+    class TestingReceiver() : Receiver {
+        override fun receive(message: String): String {
+            return HARDWIRED_RESPONSE
+        }
+    }
+
+    class DirectConnector(val receiver: Receiver) {
 
         private var isConnected = false
 
@@ -44,7 +54,7 @@ class DirectConnectorTest {
         }
 
         fun send(message: String): String {
-            if (isConnected) return HARDWIRED_RESPONSE
+            if (isConnected) return receiver.receive(message)
             return DISCONNECTED_RESPONSE
         }
 
