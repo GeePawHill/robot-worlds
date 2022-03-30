@@ -17,6 +17,13 @@ class DirectConnectorTest {
     }
 
     @Test
+    fun `send after disconnect gets error response`() {
+        connector.connect()
+        connector.disconnect()
+        assertThat(connector.send("Hi Mom!")).isEqualTo(DISCONNECTED_RESPONSE)
+    }
+
+    @Test
     fun `connect returns true on success`() {
         assertThat(connector.connect()).isTrue()
     }
@@ -39,6 +46,10 @@ class DirectConnectorTest {
         fun send(message: String): String {
             if (isConnected) return HARDWIRED_RESPONSE
             return DISCONNECTED_RESPONSE
+        }
+
+        fun disconnect() {
+            isConnected = false
         }
 
     }
