@@ -8,6 +8,7 @@ plugins {
     java
     kotlin("jvm")
     id("org.openjfx.javafxplugin") version "0.0.9"
+    kotlin("plugin.serialization") version "1.6.10"
 }
 
 repositories {
@@ -20,6 +21,7 @@ repositories {
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 }
 
 application {
