@@ -70,4 +70,11 @@ class ResponseTest {
         val actual = Json.decodeFromString<Response>(expected.toJson())
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun `makes error response correctly`() {
+        assertThat(Response.errorResponse("That was dumb")).isEqualTo(
+            Response("ERROR", mapOf("message" to JsonPrimitive("That was dumb")))
+        )
+    }
 }

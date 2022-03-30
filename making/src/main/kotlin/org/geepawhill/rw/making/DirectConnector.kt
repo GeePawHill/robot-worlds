@@ -11,7 +11,7 @@ class DirectConnector(val receiver: Receiver) {
 
     fun send(message: String): String {
         if (isConnected) return receiver.receive(message)
-        return DISCONNECTED_RESPONSE
+        return DISCONNECTED_RESPONSE_TEXT
     }
 
     fun disconnect() {
@@ -19,6 +19,6 @@ class DirectConnector(val receiver: Receiver) {
     }
 
     companion object {
-        val DISCONNECTED_RESPONSE = "ERROR: Not Connected."
+        val DISCONNECTED_RESPONSE_TEXT = Response.errorResponse("Service not connected.").toJson()
     }
 }
