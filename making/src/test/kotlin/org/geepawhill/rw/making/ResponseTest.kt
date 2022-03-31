@@ -77,4 +77,11 @@ class ResponseTest {
             Response("ERROR", mapOf("message" to JsonPrimitive("That was dumb")))
         )
     }
+
+    @Test
+    fun `makes echo response correctly`() {
+        assertThat(Response.echoResponse("resulting answer")).isEqualTo(
+            Response("OK", mapOf("message" to JsonPrimitive("resulting answer")))
+        )
+    }
 }

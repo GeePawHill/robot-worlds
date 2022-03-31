@@ -16,5 +16,9 @@ data class Response(val result: String, val data: Map<String, JsonElement>, val 
         fun errorResponse(message: String): Response {
             return Response("ERROR", mapOf("message" to JsonPrimitive(message)))
         }
+
+        fun echoResponse(message: String): Response {
+            return Response("OK", mapOf("message" to JsonPrimitive("$message")))
+        }
     }
 }
