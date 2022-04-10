@@ -32,4 +32,11 @@ class RequestTest {
         val actual = Json.decodeFromString<Request>(expected.toJson())
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun `makes echo request correctly`() {
+        val request = Request.echoRequest("Hi Mom!")
+        assertThat(request.command).isEqualTo("echo")
+        assertThat(request.arguments[0].content).isEqualTo("Hi Mom!")
+    }
 }
