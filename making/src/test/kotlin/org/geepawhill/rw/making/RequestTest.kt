@@ -39,4 +39,10 @@ class RequestTest {
         assertThat(request.command).isEqualTo("echo")
         assertThat(request.arguments[0].content).isEqualTo("Hi Mom!")
     }
+
+    @Test
+    fun `unsafeFromJson parses good value`() {
+        val request = Request.echoRequest("Hi Mom!")
+        assertThat(Request.unsafeFromJson(request.toJson())).isEqualTo(request)
+    }
 }
