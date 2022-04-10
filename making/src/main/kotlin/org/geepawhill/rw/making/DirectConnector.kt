@@ -1,20 +1,20 @@
 package org.geepawhill.rw.making
 
-class DirectConnector(val receiver: Receiver) {
+class DirectConnector(val receiver: Receiver) : Connector {
 
     private var isConnected = false
 
-    fun connect(): Boolean {
+    override fun connect(): Boolean {
         isConnected = true
         return true
     }
 
-    fun send(message: String): String {
+    override fun send(message: String): String {
         if (isConnected) return receiver.receive(message)
         return DISCONNECTED_RESPONSE_TEXT
     }
 
-    fun disconnect() {
+    override fun disconnect() {
         isConnected = false
     }
 
