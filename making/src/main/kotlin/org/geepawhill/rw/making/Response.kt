@@ -1,6 +1,7 @@
 package org.geepawhill.rw.making
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -19,6 +20,10 @@ data class Response(val result: String, val data: Map<String, JsonElement>, val 
 
         fun echoResponse(message: String): Response {
             return Response("OK", mapOf("message" to JsonPrimitive("$message")))
+        }
+
+        fun unsafeFromJson(message: String): Response {
+            return Json.decodeFromString(message)
         }
     }
 }

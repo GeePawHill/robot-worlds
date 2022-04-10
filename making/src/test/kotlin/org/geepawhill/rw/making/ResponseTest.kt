@@ -84,4 +84,16 @@ class ResponseTest {
             Response("OK", mapOf("message" to JsonPrimitive("resulting answer")))
         )
     }
+
+    @Test
+    fun `unsafeFromJson builds Response`() {
+        val response = Response(
+            "a response", mapOf(
+                "message" to JsonPrimitive("some message"),
+                "integer" to JsonPrimitive(4)
+            )
+        )
+        val result = Response.unsafeFromJson(response.toJson())
+        assertThat(result).isEqualTo(response)
+    }
 }
