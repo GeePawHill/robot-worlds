@@ -4,7 +4,7 @@ class EchoCommand(val text: String) : Command {
 
     constructor(request: Request) : this(request.arguments[0].content)
 
-    override fun execute(): String {
-        return Response.echo(text).toJson()
+    override fun unsafeRun(): Response {
+        return Response.echo(text)
     }
 }

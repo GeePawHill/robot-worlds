@@ -15,7 +15,7 @@ class CommandRunnerTest {
     @Test
     fun `returns internal error from throwing command`() {
         val throwingCommand = object : Command {
-            override fun execute(): String {
+            override fun unsafeRun(): Response {
                 throw Exception("Something exceptional happened.")
             }
 

@@ -10,13 +10,13 @@ class EchoCommandTest {
     @Test
     fun `command returns echoResponse text`() {
         val command = EchoCommand("Hi Mom!")
-        assertThat(command.execute()).isEqualTo(Response.echo("Hi Mom!").toJson())
+        assertThat(command.unsafeRun()).isEqualTo(Response.echo("Hi Mom!"))
     }
 
     @Test
     fun `constructs from well-formed echo request, too`() {
         val command = EchoCommand(Request.echoRequest("Hi Mom!"))
-        assertThat(command.execute()).isEqualTo(Response.echo("Hi Mom!").toJson())
+        assertThat(command.unsafeRun()).isEqualTo(Response.echo("Hi Mom!"))
     }
 
     @Test

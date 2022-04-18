@@ -1,7 +1,7 @@
 package org.geepawhill.rw.making
 
 interface Command {
-    fun execute(): String
+    fun unsafeRun(): Response
 
     companion object {
 

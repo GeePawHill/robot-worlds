@@ -1,7 +1,7 @@
 package org.geepawhill.rw.making
 
 class ErrorCommand(val message: String) : Command {
-    override fun execute(): String {
-        return Response.error(message).toJson()
+    override fun unsafeRun(): Response {
+        return Response.error(message)
     }
 }
