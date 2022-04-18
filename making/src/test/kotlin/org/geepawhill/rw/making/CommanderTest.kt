@@ -9,26 +9,26 @@ class CommanderTest {
     val commander = Commander()
 
     @Test
-    fun `handles echo request`() {
+    fun `echo request gets echo response`() {
         val response = commander.receive(Request.echoRequest("Hi Mom!").toJson())
-        assertThat(response).isEqualTo(Response.echoResponse("Hi Mom!").toJson())
+        assertThat(response).isEqualTo(Response.echo("Hi Mom!").toJson())
     }
 
     @Test
-    fun `handles non-request with badRequestError`() {
+    fun `non-request gets UnparseableRequest`() {
         val response = commander.receive("This is not a request.")
-        assertThat(response).isEqualTo(Response.badRequestError().toJson())
+        assertThat(response).isEqualTo(Response.unparseableRequest().toJson())
     }
 
     @Test
-    fun `handles unknown command with unknownCommandError`() {
+    fun `unknown command gets unknownCommand`() {
         val response = commander.receive(Request("non-command", "n/a", emptyList()).toJson())
         assertThat(response).isEqualTo(Response.unknownCommandError("non-command").toJson())
     }
 
     @Test
-    fun `handles known command bad or missing arguments with UnparseableCommandError`() {
+    fun `unparseable command bad or missing arguments gets UnparseableCommand`() {
         val response = commander.receive(Request("echo", "n/a", emptyList()).toJson())
-        assertThat(response).isEqualTo(Response.unparseableCommandError().toJson())
+        assertThat(response).isEqualTo(Response.unparseableCommand().toJson())
     }
 }

@@ -23,6 +23,6 @@ class SkeletonTest {
     fun `echo request roundtrip`() {
         client.connect()
         val response = client.echo("Hi Mom & Dad!")
-        assertThat(response).isEqualTo(Response.echoResponse("Hi Mom & Dad!"))
+        assertThat(response).isEqualTo(Response.echo("Hi Mom & Dad!"))
     }
 }

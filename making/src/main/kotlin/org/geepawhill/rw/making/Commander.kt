@@ -7,7 +7,7 @@ class Commander : Receiver {
             val command = parseCommand(request)
             return command.execute()
         } catch (unused: Throwable) {
-            return Response.badRequestError().toJson()
+            return Response.unparseableRequest().toJson()
         }
     }
 
@@ -18,7 +18,7 @@ class Commander : Receiver {
                 else -> return UnknownCommand(request)
             }
         } catch (unused: Throwable) {
-            return UnparseableCommandCommand()
+            return UnparseableCommand()
         }
     }
 }

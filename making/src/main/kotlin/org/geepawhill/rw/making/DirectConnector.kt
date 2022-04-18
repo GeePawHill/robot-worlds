@@ -19,6 +19,6 @@ class DirectConnector(val receiver: Receiver) : Connector {
     }
 
     companion object {
-        val DISCONNECTED_RESPONSE_TEXT = Response.errorResponse("Service not connected.").toJson()
+        val DISCONNECTED_RESPONSE_TEXT = Response.error("Service not connected.").toJson()
     }
 }

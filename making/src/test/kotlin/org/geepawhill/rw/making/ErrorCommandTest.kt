@@ -8,6 +8,6 @@ class ErrorCommandTest {
     @Test
     fun `command returns errorResponse text`() {
         val command = ErrorCommand("Hi Mom!")
-        assertThat(command.execute()).isEqualTo(Response.errorResponse("Hi Mom!").toJson())
+        assertThat(command.execute()).isEqualTo(Response.error("Hi Mom!").toJson())
     }
 }
