@@ -45,4 +45,21 @@ class RequestTest {
         val request = Request.echoRequest("Hi Mom!")
         assertThat(Request.unsafeFromJson(request.toJson())).isEqualTo(request)
     }
+
+    @Test
+    fun `fromJson parses garbage`() {
+        assertThat(Request.fromJson("garbage")).isEqualTo(Request.unparseableRequest())
+    }
+
+    @Test
+    fun `fromJson parses incomplete request`() {
+        val missingRobot = """{"command":"launch","arguments":[1,"a string"]}"""
+        assertThat(Request.fromJson(missingRobot)).isEqualTo(Request.unparseableRequest())
+    }
+
+    @Test
+    fun `fromJson parses good value`() {
+        val request = Request.echoRequest("Hi Mom!")
+        assertThat(Request.fromJson(request.toJson())).isEqualTo(request)
+    }
 }

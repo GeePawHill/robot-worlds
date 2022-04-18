@@ -14,12 +14,24 @@ data class Request(val command: String, val robot: String, val arguments: List<J
 
     companion object {
 
+        fun fromJson(message: String): Request {
+            try {
+                return unsafeFromJson(message)
+            } catch (ignored: Exception) {
+                return unparseableRequest()
+            }
+        }
+
         fun unsafeFromJson(message: String): Request {
             return Json.decodeFromString(message)
         }
 
         fun echoRequest(text: String): Request {
             return Request("echo", "n/a", listOf(JsonPrimitive(text)))
+        }
+
+        fun unparseableRequest(): Request {
+            return Request("unparseable", "n/a", emptyList())
         }
     }
 }
