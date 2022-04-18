@@ -25,5 +25,9 @@ data class Response(val result: String, val data: Map<String, JsonElement>, val 
         fun unsafeFromJson(message: String): Response {
             return Json.decodeFromString(message)
         }
+
+        fun badRequestError(): Response {
+            return errorResponse("Can not parse Request.")
+        }
     }
 }
