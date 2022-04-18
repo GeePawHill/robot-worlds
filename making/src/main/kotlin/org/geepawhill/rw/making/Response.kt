@@ -29,5 +29,9 @@ data class Response(val result: String, val data: Map<String, JsonElement>, val 
         fun badRequestError(): Response {
             return errorResponse("Can not parse Request.")
         }
+
+        fun unknownCommandError(command: String): Response {
+            return errorResponse("Unknown command: [$command]")
+        }
     }
 }

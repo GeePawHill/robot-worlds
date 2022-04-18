@@ -15,8 +15,14 @@ class CommanderTest {
     }
 
     @Test
-    fun `handles non-request with parseError`() {
+    fun `handles non-request with badRequestError`() {
         val response = commander.receive("This is not a request.")
         assertThat(response).isEqualTo(Response.badRequestError().toJson())
+    }
+
+    @Test
+    fun `handles unknown command with unknownCommandError`() {
+        val response = commander.receive(Request("non-command", "n/a", emptyList()).toJson())
+        assertThat(response).isEqualTo(Response.unknownCommandError("non-command").toJson())
     }
 }
