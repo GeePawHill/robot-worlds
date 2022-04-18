@@ -37,5 +37,9 @@ data class Response(val result: String, val data: Map<String, JsonElement>, val 
         fun unparseableCommand(): Response {
             return error("Could not parse arguments")
         }
+
+        fun internalError(): Response {
+            return error("An internal error has occurred.")
+        }
     }
 }
