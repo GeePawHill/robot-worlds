@@ -12,9 +12,13 @@ class Commander : Receiver {
     }
 
     private fun parseCommand(request: Request): Command {
-        when (request.command) {
-            "echo" -> return EchoCommand(request)
-            else -> return UnknownCommand(request)
+        try {
+            when (request.command) {
+                "echo" -> return EchoCommand(request)
+                else -> return UnknownCommand(request)
+            }
+        } catch (unused: Throwable) {
+            return UnparseableCommandCommand()
         }
     }
 }

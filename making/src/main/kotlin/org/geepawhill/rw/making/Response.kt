@@ -33,5 +33,9 @@ data class Response(val result: String, val data: Map<String, JsonElement>, val 
         fun unknownCommandError(command: String): Response {
             return errorResponse("Unknown command: [$command]")
         }
+
+        fun unparseableCommandError(): Response {
+            return errorResponse("Could not parse arguments")
+        }
     }
 }

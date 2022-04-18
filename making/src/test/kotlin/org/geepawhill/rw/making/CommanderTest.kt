@@ -25,4 +25,10 @@ class CommanderTest {
         val response = commander.receive(Request("non-command", "n/a", emptyList()).toJson())
         assertThat(response).isEqualTo(Response.unknownCommandError("non-command").toJson())
     }
+
+    @Test
+    fun `handles known command bad or missing arguments with UnparseableCommandError`() {
+        val response = commander.receive(Request("echo", "n/a", emptyList()).toJson())
+        assertThat(response).isEqualTo(Response.unparseableCommandError().toJson())
+    }
 }
