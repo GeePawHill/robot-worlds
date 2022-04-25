@@ -15,7 +15,7 @@ interface Command {
 
         private fun unsafeFromRequest(request: Request) = when (request.command) {
             "unparseable" -> UnparseableRequestCommand()
-            "echo" -> EchoCommand(request)
+            "echo" -> EchoCommand.unsafeFrom(request)
             else -> UnknownCommand(request)
         }
     }

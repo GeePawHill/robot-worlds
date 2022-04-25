@@ -15,14 +15,14 @@ class EchoCommandTest {
 
     @Test
     fun `constructs from well-formed echo request, too`() {
-        val command = EchoCommand(Request.echoRequest("Hi Mom!"))
+        val command = EchoCommand.unsafeFrom(Request.echoRequest("Hi Mom!"))
         assertThat(command.unsafeRun()).isEqualTo(Response.echo("Hi Mom!"))
     }
 
     @Test
     fun `throws on missing or bad argument`() {
         assertThrows<IndexOutOfBoundsException> {
-            EchoCommand(Request("echo", "n/a", emptyList()))
+            EchoCommand.unsafeFrom(Request("echo", "n/a", emptyList()))
         }
     }
 }
