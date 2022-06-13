@@ -1,10 +1,11 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.transport
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
+import org.geepawhill.rw.making.State
 import org.junit.jupiter.api.Test
 
 class ResponseTest {

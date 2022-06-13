@@ -1,9 +1,9 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.transport
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isTrue
-import org.geepawhill.rw.making.DirectConnector.Companion.DISCONNECTED_RESPONSE_TEXT
+import org.geepawhill.rw.transport.DirectConnector.Companion.DISCONNECTED_RESPONSE_TEXT
 import org.junit.jupiter.api.Test
 
 

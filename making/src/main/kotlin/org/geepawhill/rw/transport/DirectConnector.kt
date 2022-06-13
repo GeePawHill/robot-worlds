@@ -1,4 +1,4 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.transport
 
 class DirectConnector(val receiver: Receiver) : Connector {
 

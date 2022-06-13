@@ -1,4 +1,4 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.transport
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -6,6 +6,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
+import org.geepawhill.rw.making.State
 
 @Serializable
 data class Response(val result: String, val data: Map<String, JsonElement>, val state: State? = null) {

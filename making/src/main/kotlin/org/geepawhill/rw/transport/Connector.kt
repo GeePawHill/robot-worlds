@@ -1,4 +1,4 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.transport
 
 interface Connector {
     fun connect(): Boolean

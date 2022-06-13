@@ -1,7 +1,9 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.command
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import org.geepawhill.rw.transport.Request
+import org.geepawhill.rw.transport.Response
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

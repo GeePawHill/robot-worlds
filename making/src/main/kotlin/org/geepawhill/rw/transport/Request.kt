@@ -1,4 +1,4 @@
-package org.geepawhill.rw.making
+package org.geepawhill.rw.transport
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString

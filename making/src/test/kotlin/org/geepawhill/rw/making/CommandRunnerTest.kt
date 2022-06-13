@@ -2,6 +2,9 @@ package org.geepawhill.rw.making
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import org.geepawhill.rw.command.Command
+import org.geepawhill.rw.command.EchoCommand
+import org.geepawhill.rw.transport.Response
 import org.junit.jupiter.api.Test
 
 class CommandRunnerTest {

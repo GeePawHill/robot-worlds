@@ -2,6 +2,10 @@ package org.geepawhill.rw.making
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import org.geepawhill.rw.transport.Connector
+import org.geepawhill.rw.transport.DirectConnector
+import org.geepawhill.rw.transport.Request
+import org.geepawhill.rw.transport.Response
 import org.junit.jupiter.api.Test
 
 class Client(val connector: Connector) {
