@@ -1,9 +1,10 @@
 package org.geepawhill.rw.making
 
+import org.geepawhill.rw.transport.Connector
 import tornadofx.*
 
 
-class ClientView : Fragment() {
+class ClientView(private val connector: Connector) : Fragment() {
 
     override val root = borderpane {
         minWidth = 400.0
