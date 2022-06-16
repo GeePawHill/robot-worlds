@@ -9,7 +9,7 @@ class MakerView : View("Robot World (Making)") {
     val connector = DirectConnector(commander)
     val clientView = ClientView(connector)
 
-    val serverView = ServerView()
+    val serverView = ServerView(commander)
     
     override val root = splitpane {
         this += clientView

@@ -1,16 +1,11 @@
 package org.geepawhill.rw.making
 
-import org.geepawhill.rw.command.Event
 import org.geepawhill.rw.transport.Request
 import tornadofx.*
 
-class ServerModel() {
-    val activity = observableListOf<Event>()
-}
+class ServerView(val commander: Commander) : Fragment() {
 
-class ServerView : Fragment() {
-
-    val model = ServerModel()
+    val model = ServerModel(commander)
 
     override val root = borderpane {
         minWidth = 400.0
