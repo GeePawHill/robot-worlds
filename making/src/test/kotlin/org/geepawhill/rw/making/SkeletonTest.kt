@@ -2,26 +2,14 @@ package org.geepawhill.rw.making
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import org.geepawhill.rw.transport.Connector
 import org.geepawhill.rw.transport.DirectConnector
-import org.geepawhill.rw.transport.Request
 import org.geepawhill.rw.transport.Response
 import org.junit.jupiter.api.Test
-
-class Client(val connector: Connector) {
-    fun connect(): Boolean = connector.connect()
-    fun disconnect() = connector.disconnect()
-    fun echo(text: String): Response {
-        val request = Request.echoRequest(text)
-        val result = connector.send(request.toJson())
-        return Response.unsafeFromJson(result)
-    }
-}
 
 class SkeletonTest {
     val commander = Commander()
     val connector = DirectConnector(commander)
-    val client = Client(connector)
+    val client = ClientModel(connector)
 
     @Test
     fun `echo request roundtrip`() {
