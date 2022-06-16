@@ -5,9 +5,10 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
+import org.geepawhill.rw.command.Event
 
 @Serializable
-data class Request(val command: String, val robot: String, val arguments: List<JsonPrimitive>) {
+data class Request(val command: String, val robot: String, val arguments: List<JsonPrimitive>) : Event {
     fun toJson(): String {
         return Json.encodeToString(this)
     }
