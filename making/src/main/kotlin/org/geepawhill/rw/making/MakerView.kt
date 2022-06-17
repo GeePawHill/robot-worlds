@@ -5,11 +5,11 @@ import tornadofx.*
 
 
 class MakerView : View("Robot World (Making)") {
-    val commander = Commander()
-    val connector = DirectConnector(commander)
-    val clientView = ClientView(connector)
+    val serverModel = ServerModel()
+    val serverView = ServerView(serverModel)
 
-    val serverView = ServerView()
+    val connector = DirectConnector(serverModel)
+    val clientView = ClientView(connector)
 
     override val root = splitpane {
         this += clientView
