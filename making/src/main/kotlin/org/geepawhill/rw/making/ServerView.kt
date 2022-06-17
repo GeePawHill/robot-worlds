@@ -12,9 +12,9 @@ class ServerView(val model: ServerModel) : Fragment() {
                 label("Server View")
             }
             toolbar {
-                button("Fake Event") {
+                button("Echo Hey!") {
                     action {
-                        model.activity.add(Request("FAKE", "fake", emptyList()))
+                        model.receive(Request.echoRequest("Hey!").toJson())
                     }
                 }
             }
