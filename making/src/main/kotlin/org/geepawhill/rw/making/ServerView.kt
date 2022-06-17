@@ -3,9 +3,9 @@ package org.geepawhill.rw.making
 import org.geepawhill.rw.transport.Request
 import tornadofx.*
 
-class ServerView(val commander: Commander) : Fragment() {
+class ServerView() : Fragment() {
 
-    val model = ServerModel(commander)
+    val model = ServerModel()
 
     override val root = borderpane {
         minWidth = 400.0

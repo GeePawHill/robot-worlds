@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test
 
 class ServerModelTest {
 
-    val commander = Commander()
-    val model = ServerModel(commander)
+    val model = ServerModel()
 
     @Test
     fun `notify adds to events`() {
@@ -24,5 +23,12 @@ class ServerModelTest {
         val event = Request.echoRequest("Hi Mom!")
         val response = model.receive(event.toJson())
         assertThat(response).isEqualTo(Response.echo("Hi Mom!").toJson())
+    }
+
+    @Test
+    fun `receive gets notifications`() {
+        val event = Request.echoRequest("Hi Mom!")
+        model.receive(event.toJson())
+        assertThat(model.activity).containsExactly(Request.echoRequest("Hi Mom!"))
     }
 }
