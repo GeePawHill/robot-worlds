@@ -5,12 +5,14 @@ import org.geepawhill.rw.transport.Receiver
 import tornadofx.*
 
 class ServerModel : Watcher, Receiver {
-    
+
     val activity = observableListOf<Event>()
     val commander = Commander(this)
 
     override fun notify(event: Event) {
-        activity += event
+        runLater {
+            activity += event
+        }
     }
 
     override fun receive(message: String): String {

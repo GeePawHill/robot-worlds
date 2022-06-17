@@ -1,6 +1,5 @@
 package org.geepawhill.rw.making
 
-import org.geepawhill.rw.transport.Request
 import tornadofx.*
 
 class ServerView(val model: ServerModel) : Fragment() {
@@ -10,13 +9,6 @@ class ServerView(val model: ServerModel) : Fragment() {
         top = vbox {
             stackpane {
                 label("Server View")
-            }
-            toolbar {
-                button("Echo Hey!") {
-                    action {
-                        model.receive(Request.echoRequest("Hey!").toJson())
-                    }
-                }
             }
         }
         center = listview(model.activity)
